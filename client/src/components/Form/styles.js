@@ -1,4 +1,5 @@
 import { makeStyles } from "@material-ui/core/styles";
+import shadows from "@material-ui/core/styles/shadows";
 
 export default makeStyles((theme) => ({
   root: {
@@ -8,6 +9,7 @@ export default makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(2),
+    boxShadow: ".1rem .1rem .8rem gray",
   },
   form: {
     display: "flex",

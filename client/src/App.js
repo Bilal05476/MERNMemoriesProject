@@ -3,9 +3,17 @@ import memories from "./images/memories.png";
 import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
 import useStyles from "./styles";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { getPosts } from "./actions/posts";
 
 const App = () => {
   const styles = useStyles();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getPosts());
+  }, [dispatch]);
+
   return (
     <div>
       <Container>
@@ -26,13 +34,13 @@ const App = () => {
             <Grid
               container
               justify="space-between"
-              alignItems="stratch"
+              alignItems="flex-start"
               spacing={3}
             >
-              <Grid item xs={12} sm={7}>
+              <Grid item xs={12} sm={12} md={8}>
                 <Posts />
               </Grid>
-              <Grid item xs={12} sm={4}>
+              <Grid item xs={12} sm={12} md={4}>
                 <Form />
               </Grid>
             </Grid>
