@@ -4,7 +4,7 @@ import Form from "./components/Form/Form";
 import Posts from "./components/Posts/Posts";
 import useStyles from "./styles";
 import { useDispatch } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getPosts } from "./actions/posts";
 
 const App = () => {
@@ -13,19 +13,20 @@ const App = () => {
   useEffect(() => {
     dispatch(getPosts());
   }, [dispatch]);
+  const [currentId, setCurrentId] = useState(null);
 
   return (
     <div>
       <Container>
         <AppBar position="static" color="inherit" className={styles.appBar}>
-          <Typography variant="h2" align="center" className={styles.heading}>
+          <Typography variant="h3" align="center" className={styles.heading}>
             Memories
           </Typography>
           <img
             src={memories}
             alt="memories"
-            height="60"
-            width="60"
+            height="40"
+            width="40"
             className={styles.image}
           />
         </AppBar>
@@ -34,14 +35,14 @@ const App = () => {
             <Grid
               container
               justify="space-between"
-              alignItems="flex-start"
+              alignItems="stretch"
               spacing={3}
             >
-              <Grid item xs={12} sm={12} md={8}>
-                <Posts />
+              <Grid item sm={12} md={8}>
+                <Posts setCurrentId={setCurrentId} />
               </Grid>
-              <Grid item xs={12} sm={12} md={4}>
-                <Form />
+              <Grid item sm={12} md={4}>
+                <Form currentId={currentId} setCurrentId={setCurrentId} />
               </Grid>
             </Grid>
           </Container>
