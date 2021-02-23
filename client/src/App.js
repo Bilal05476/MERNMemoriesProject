@@ -8,12 +8,14 @@ import { useEffect, useState } from "react";
 import { getPosts } from "./actions/posts";
 
 const App = () => {
+  const [currentId, setCurrentId] = useState(null);
+
   const styles = useStyles();
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(getPosts());
-  }, [dispatch]);
-  const [currentId, setCurrentId] = useState(null);
+  }, [currentId, dispatch]);
 
   return (
     <div>
