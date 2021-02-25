@@ -8,7 +8,7 @@ import { createPost, updatePost } from "../../actions/posts";
 
 const Form = ({ currentId, setCurrentId }) => {
   const post = useSelector((state) =>
-    currentId ? state.posts.find((p) => p._id === currentId) : null
+    currentId ? state.posts.find((message) => message._id === currentId) : null
   );
   const [postData, setPostData] = useState({
     creator: "",
@@ -27,21 +27,21 @@ const Form = ({ currentId, setCurrentId }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (currentId) {
-      dispatch(updatePost(currentId, postData));
-    } else {
+    if (currentId === 0) {
       dispatch(createPost(postData));
+    } else {
+      dispatch(updatePost(currentId, postData));
     }
     clear();
   };
 
   const clear = () => {
-    setCurrentId(null);
+    setCurrentId(0);
     setPostData({
       creator: "",
       title: "",
       message: "",
-      tags: [],
+      tags: "",
       selectedFile: "",
     });
   };
@@ -94,7 +94,7 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags"
+          label="Tags (must contain #)"
           fullWidth
           style={{ margin: ".8rem 0" }}
           value={postData.tags}

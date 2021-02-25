@@ -41,8 +41,19 @@ const Post = ({ post, setCurrentId }) => {
         </Button>
       </div>
       <div className={styles.details}>
-        <Typography variant="body2" color="textSecondary">
-          {post.tags.map((tag) => `#${tag} `)}
+        <Typography
+          style={{
+            backgroundColor: "lightskyblue",
+            padding: "0",
+            paddingLeft: "10px",
+            paddingRight: "10px",
+            borderRadius: "10px",
+            marginBottom: "10px",
+          }}
+          variant="body2"
+          color="textSecondary"
+        >
+          {post.tags.map((tag) => `${tag} `)}
         </Typography>
       </div>
       <Typography className={styles.title} variant="h5">
